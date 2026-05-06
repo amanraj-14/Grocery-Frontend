@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - SuperMart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: #fff7f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      width: 900px;
+      min-height: 580px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(255,106,0,0.15);
+      animation: fadeUp 0.5s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      background: linear-gradient(145deg, #ff6a00, #ff9a3c);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 36px;
+      color: white;
+      text-align: center;
+    }
+
+    .left-panel .logo {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .left-panel p {
+      font-size: 15px;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .left-panel .emoji-row {
+      font-size: 36px;
+      letter-spacing: 8px;
+    }
+
+    /* RIGHT PANEL */
+    .right-panel {
+      background: white;
+      flex: 1.2;
+      padding: 48px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right-panel h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .right-panel .subtitle {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 28px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      transition: border 0.3s;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: #ff6a00;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: #ff6a00;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.3s, transform 0.1s;
+    }
+
+    .btn-submit:hover { background: #e05a00; }
+    .btn-submit:active { transform: scale(0.98); }
+
+    .msg {
+      margin-top: 14px;
+      font-size: 13px;
+      text-align: center;
+      min-height: 20px;
+      font-weight: 600;
+    }
+
+    .msg.success { color: #2ecc71; }
+    .msg.error   { color: #e74c3c; }
+
+    .bottom-link {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .bottom-link a {
+      color: #ff6a00;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .bottom-link a:hover { text-decoration: underline; }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back-home:hover { color: #ff6a00; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <div class="logo">🛒 SuperMart</div>
+    <p>Join thousands of happy<br>customers shopping fresh!</p>
+    <div class="emoji-row">🍅 🧅 🥕</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-panel">
+    <h2>Create Account ✨</h2>
+    <p class="subtitle">Sign up and start shopping!</p>
+
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="signup-name" placeholder="Aman Sharma">
+    </div>
+
+    <div class="input-group">
+      <label>Email Address</label>
+      <input type="email" id="signup-email" placeholder="you@example.com">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="signup-password" placeholder="Min 6 characters">
+    </div>
+
+    <button class="btn-submit" onclick="signup()">Create Account</button>
+
+    <div class="msg" id="signup-msg"></div>
+
+    <div class="bottom-link">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+
+    <a href="index.html" class="back-home">← Back to Home</a>
+  </div>
+
+</div>
+
+<script>
+  async function signup() {
+    const name     = document.getElementById("signup-name").value.trim();
+    const email    = document.getElementById("signup-email").value.trim();
+    const password = document.getElementById("signup-password").value.trim();
+    const msgEl    = document.getElementById("signup-msg");
+
+    if (!name || !email || !password) {
+      msgEl.textContent = "❌ Please fill in all fields.";
+      msgEl.className = "msg error";
+      return;
+    }
+
+    if (password.length < 6) {
+      msgEl.textContent = "❌ Password kam se kam 6 characters ka hona chahiye.";
+      msgEl.className = "msg error";
+      return;
+    }
+
+    msgEl.textContent = "Creating account...";
+    msgEl.className = "msg";
+
+    try {
+      const res = await fetch("https://grocery-backend-9kla.onrender.com/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        msgEl.textContent = "✅ Account bana diya! Login kar lo...";
+        msgEl.className = "msg success";
+        setTimeout(() => window.location.href = "login.html", 1500);
+      } else {
+        msgEl.textContent = "❌ " + (data.detail || "Kuch galat ho gaya.");
+        msgEl.className = "msg error";
+      }
+    } catch (err) {
+      msgEl.textContent = "❌ Server se connect nahi ho pa raha.";
+      msgEl.className = "msg error";
+    }
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") signup();
+  });
+</script>
+
+</body>
+</html>

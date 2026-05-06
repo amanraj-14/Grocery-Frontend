@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us - SuperMart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="logo">SuperMart</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="contact-page">
+    <div class="contact-container">
+
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>We’d love to hear from you. Reach out anytime!</p>
+
+            <div class="info-box">📧 amanr835222@gmail.com</div>
+            <div class="info-box">📞 +91 9334558857</div>
+            <div class="info-box">📍 Greater Noida, India</div>
+        </div>
+
+        <div class="contact-form-box">
+
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= EMAILJS ================= -->
+<script>
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    fetch("https://grocery-backend-9kla.onrender.com/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message || "Message sent ✅");
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Failed ❌");
+    });
+});
+</script>
+
+
+</body>
+</html>
